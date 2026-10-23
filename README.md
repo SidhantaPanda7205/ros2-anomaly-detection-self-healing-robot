@@ -1,138 +1,83 @@
-# ROS2-Based Anomaly Detection & Self-Healing Robot
+ROS 2 Anomaly Detection & Self-Healing Robot
 
-## 📌 Project Overview
+1. Project Overview
 
-This project presents a ROS 2-based robotic system for detecting anomalies and performing a basic self-healing safety action using a TurtleBot3 Burger robot in Gazebo simulation.
+This project focuses on developing a ROS 2-based robotic system that detects abnormal robot behavior and activates self-healing actions in a simulated environment using Gazebo. The system monitors robot movement, collects odometry data, detects simulated faults, and records results for analysis.
 
-The robot uses LiDAR sensor data to monitor its surroundings. When an obstacle or abnormal condition is detected within a predefined distance, the system identifies the condition as an anomaly and activates the self-healing safety mechanism by stopping the robot.
+2. Objectives
 
-## 🎯 Objectives
+- To monitor robot movement using ROS 2.
+- To collect and analyze robot odometry data.
+- To detect abnormal behavior and simulated faults.
+- To activate self-healing actions when faults are detected.
+- To compare normal and faulty robot behavior using graphs and recorded data.
 
-- Detect abnormal conditions using LiDAR data.
-- Monitor the robot's surroundings continuously.
-- Detect nearby obstacles as potential anomalies.
-- Automatically stop the robot when an anomaly is detected.
-- Demonstrate fault detection and self-healing behavior in simulation.
+3. Technologies Used
 
-## 🛠️ Technologies Used
-
-- ROS 2 Humble
 - Ubuntu 22.04
-- Gazebo
-- TurtleBot3 Burger
+- ROS 2
+- Gazebo Simulator
 - Python
-- LiDAR Sensor
-- ROS 2 Topics
+- TurtleBot3 (if configured)
+- CSV data files
+- Graph visualization
 
-## 🏗️ System Architecture
+4. Key Features
 
-```text
-        LiDAR Sensor
-             ↓
-        /scan Topic
-             ↓
-    Anomaly Detection Node
-             ↓
-      Fault/Obstacle
-        Detection
-             ↓
-     Self-Healing Node
-             ↓
-        /cmd_vel
-             ↓
-       Robot Stop
+- Robot movement monitoring
+- Anomaly and fault detection
+- Self-healing action activation
+- Odometry data collection
+- Normal, fault, and movement test scenarios
+- Graph generation and result analysis
+- ROS bag data recording
 
+5. Project Structure
 
-📂 Project Structure
 anomaly_ws/
-└── src/
-    └── anomaly_robot/
-        ├── anomaly_robot/
-        │   ├── __init__.py
-        │   ├── anomaly_detector.py
-        │   ├── self_healing.py
-        │   └── robot_controller.py
-        ├── package.xml
-        └── setup.py
+├── results/
+│   ├── normal_run/
+│   ├── fault_run/
+│   └── movement_run/
+├── final_backup/
+├── src/
+└── README.md
 
+6. Working Methodology
 
-⚙️ How the System Works
-1.TurtleBot3 Burger is launched in Gazebo.
-2.The LiDAR sensor continuously publishes data through the /scan topic.
-3.The Anomaly Detector Node processes the LiDAR data.
-4.If an obstacle is detected below the defined safety distance, an anomaly is reported.
-5.The Self-Healing Node receives the sensor information.
-6.A safety stop command is published through /cmd_vel.
-7.The robot stops to prevent unsafe movement.
+1. Start the ROS 2 environment and Gazebo simulation.
+2. Launch the robot and monitor its movement.
+3. Collect odometry and simulation data.
+4. Run the anomaly detection process.
+5. Detect abnormal behavior or simulated faults.
+6. Activate the self-healing response.
+7. Save the collected data and generate graphs.
+8. Compare normal and faulty robot behavior.
 
+7. Results
 
-🚀 How to Run
-1. Source ROS 2
-source /opt/ros/humble/setup.bash
+The project stores simulation recordings, CSV files, and generated graphs in the "results/" and "final_backup/" directories. These results help analyze robot movement and evaluate the behavior of the anomaly detection and self-healing system.
 
+8. Applications
 
-2. Source the project workspace
-source ~/anomaly_ws/install/setup.bash
+- Autonomous robotics
+- Robot fault monitoring
+- Robotics simulation and testing
+- Intelligent fault recovery systems
+- Research in reliable robotic systems
 
+9. Future Enhancements
 
-3. Set TurtleBot3 model
-export TURTLEBOT3_MODEL=burger
+- Improve anomaly detection accuracy.
+- Add more fault scenarios.
+- Develop real-time monitoring dashboards.
+- Include additional performance metrics.
+- Test the system under more simulated conditions.
 
+10. Conclusion
 
-4. Launch Gazebo
-ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
+This project demonstrates a ROS 2-based approach to anomaly detection and self-healing in robotic simulation. By monitoring robot behavior, collecting data, and activating recovery actions, the system supports research into more reliable and fault-tolerant robotic applications.
 
+GitHub Repository
 
-5. Run Anomaly Detector
-ros2 run anomaly_robot anomaly_detector
-
-
-6. Run Self-Healing Node
-Open another terminal and run-:
-source /opt/ros/humble/setup.bash
-source ~/anomaly_ws/install/setup.bash
-ros2 run anomaly_robot self_healing
-
-
-🔍 Example Output
-Normal Condition-:
-Anomaly Detector Started
-Monitoring LiDAR /scan data...
-Normal - Minimum distance: 0.xx m
-
-
-Anomaly Detection-:
-ANOMALY DETECTED!
-Obstacle distance: 0.xx m
-
-
-Self-Healing Action-:
-Self-Healing Node Started
-Monitoring robot for faults...
-Obstacle/fault detected!
-Self-healing action activated.
-
-
-🧪 Testing
-The system was tested in Gazebo using TurtleBot3 Burger.
-The following components were verified:
-. LiDAR /scan data
-. Anomaly detection
-. Obstacle detection
-. Self-healing safety action
-. /cmd_vel stop command
-. ROS 2 node communication
-
-
-🔮 Future Scope
-- Automatic recovery and navigation after fault detection.
-- Detection of different types of robot faults.
-- Machine Learning-based anomaly detection.
-- Real-time fault classification.
-- Hardware implementation using a physical robot.
-- Advanced autonomous recovery strategies.
-
-
-👨‍💻 Project
-ROS2-Based Anomaly Detection & Self-Healing Robot
-Developed using ROS 2, Python, Gazebo and TurtleBot3.
+https://github.com/SidhantaPanda7205/ros2-anomaly-detection-self-healing-robot
